@@ -121,9 +121,17 @@
           }
         });
         $("body").on('touchend mouseup', function() {
+          var ratio;
           if (_this.dragging) {
             _this.dragging = false;
             _this.dragger.removeClass("dragging");
+            ratio = _this.valueToRatio(_this.value);
+            _this.input.trigger("slider:release", {
+              value: _this.value,
+              ratio: ratio,
+              position: ratio * _this.slider.outerWidth(),
+              el: _this.slider
+            });
             return $("body").css({
               cursor: "auto"
             });

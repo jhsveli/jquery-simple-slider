@@ -153,9 +153,15 @@
           @dragging = false
           @dragger.removeClass "dragging"
 
+          ratio = @valueToRatio(@value)
+          @input.trigger "slider:release",
+            value: @value,
+            ratio: ratio,
+            position: ratio * @slider.outerWidth(),
+            el: @slider
+
           # Revert the cursor
           $("body").css cursor: "auto"
-
 
       # Set slider initial position
       @pagePos = 0
